@@ -1,13 +1,13 @@
 import { Model, DataTypes} from "sequelize";
 import { sequelize } from "../instances/pg";
 
-export interface PhraseInstance extends Model {
+export interface BooksInstance extends Model {
     id: number;
     author: string;
-    text: string;
+    title: string;
 }
 
-export const Phrase = sequelize.define<PhraseInstance>("Phrase", {
+export const Book = sequelize.define<BooksInstance>("Book", {
     id: {
         primaryKey: true,
         autoIncrement: true,
@@ -18,10 +18,10 @@ export const Phrase = sequelize.define<PhraseInstance>("Phrase", {
         type: DataTypes.STRING
     },
 
-    text: {
+    title: {
         type: DataTypes.STRING
     }
 }, {
-    tableName: "phrases",
+    tableName: "books",
     timestamps: false
 })
