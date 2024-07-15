@@ -16,10 +16,10 @@ Sequelize é um ORM (Object-Relational Mapping) para Node.js que suporta vários
 ### Swagger
 Swagger é uma ferramenta para design, construção e documentação de APIs RESTful. Ele facilita a criação de uma documentação interativa, onde os usuários podem testar as APIs diretamente.
 
-Nodemon (Instalação Global)
+### Nodemon (Instalação Global)
 Nodemon é uma ferramenta que ajuda a desenvolver aplicativos baseados em Node.js reiniciando automaticamente a aplicação quando arquivos no diretório são alterados.
 
-TS-Node (Instalação Global)
+### TS-Node (Instalação Global)
 TS-Node é um interpretador TypeScript para Node.js, que permite executar diretamente arquivos TypeScript sem a necessidade de pré-compilação.
 
 
