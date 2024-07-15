@@ -16,10 +16,10 @@ router.put('/frases/:id', PhraseController.updatePhrase);
 router.delete('/frases/:id', PhraseController.deletePhrase);
 router.get('/frases/aleatoria', PhraseController.randomPhrase);
 
-router.get('/books', BookController.listBooks);
-router.get('/books/:id', BookController.getBook);
-router.post('/books', BookController.createBook);
-router.put('/books/:id', BookController.updateBook);
-router.delete('/books/:id', BookController.deleteBook);
+router.get('/livros', BookController.listBooks);
+router.get('/livros/:id', BookController.getBook);
+router.post('/livros', BookController.createBook);
+router.put('/livros/:id', BookController.updateBook);
+router.delete('/livros/:id', BookController.deleteBook);
 
 export default router;
