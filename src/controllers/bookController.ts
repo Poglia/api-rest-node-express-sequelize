@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import { Book } from "../models/books";
+import { Sequelize } from "sequelize";
 
-export const createBook =  async(req: Request, res: Response) => {
+export const createBook = async(req: Request, res: Response) => {
     let {author, title} = req.body;
 
     let newBook = await Book.create({

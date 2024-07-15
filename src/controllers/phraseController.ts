@@ -2,67 +2,62 @@ import { Request, Response } from "express";
 import { Sequelize } from "sequelize";
 import { Phrase } from "../models/phrase";
 
-export const createPhrase =  async(req: Request, res: Response) => {
-    let {author , text} = req.body;
+export const createPhrase = async (req: Request, res: Response) => {
+  let { author, text } = req.body;
 
-    let newPhrase = await Phrase.create({
-        author, text
-    })
-    res.status(201);
+  let newPhrase = await Phrase.create({
+    author,
+    text,
+  });
+  res.status(201);
 
-    res.json({id: newPhrase.id, author, text});
-}
+  res.json({ id: newPhrase.id, author, text });
+};
 
-export const listPhrases =  async(req: Request, res: Response) => {
-    let list  = await Phrase.findAll();
-    res.json({list});
-}
+export const listPhrases = async (req: Request, res: Response) => {
+  let list = await Phrase.findAll();
+  if (list) {
+    res.json({ list });
+    res.status(200);
+  } else {
+    res.json({ list });
+    res.status(404);
+  }
+};
 
-export const getPhrase =  async(req: Request, res: Response) => {
-    let {id} = req.params;
+export const getPhrase = async (req: Request, res: Response) => {
+  let { id } = req.params;
 
-    let phrase = await Phrase.findByPk(id);
-    if(phrase)
-        res.json({phrase});
-    else
-        res.json({error: "Frase não encontrada"});
+  let phrase = await Phrase.findByPk(id);
+  if (phrase) res.json({ phrase });
+  else res.json({ error: "Frase não encontrada" });
+};
 
-}
+export const updatePhrase = async (req: Request, res: Response) => {
+  let { id } = req.params;
+  let { author, text } = req.body;
 
-export const updatePhrase =  async(req: Request, res: Response) => {
-    let {id} = req.params;
-    let {author , text} = req.body;
+  let phrase = await Phrase.findByPk(id);
+  if (phrase) {
+    phrase.author = author;
+    phrase.text = text;
 
-    let phrase = await Phrase.findByPk(id);
-    if(phrase)
-        {
-            phrase.author = author;
-            phrase.text = text;
-            
-            await phrase.save();
-            res.json({phrase});
+    await phrase.save();
+    res.json({ phrase });
+  } else res.json({ error: "Frase não encontrada" });
+};
 
-        }
-    else
-        res.json({error: "Frase não encontrada"});
+export const deletePhrase = async (req: Request, res: Response) => {
+  let { id } = req.params;
+  await Phrase.destroy({ where: { id } });
+  res.json({});
+};
 
-}
+export const randomPhrase = async (req: Request, res: Response) => {
+  let phrase = await Phrase.findOne({
+    order: [Sequelize.fn("RANDOM")],
+  });
 
-export const deletePhrase =  async(req: Request, res: Response) => {
-    let {id} = req.params;
-    await Phrase.destroy({ where: { id }});
-    res.json({});
-}
-
-export const randomPhrase =  async(req: Request, res: Response) => {
-    let phrase = await Phrase.findOne({
-        order: [
-            Sequelize.fn('RANDOM')
-        ]
-    });
-
-    if(phrase)
-        res.json({phrase});
-    else
-        res.json({error: "Frase não encontrada"});
-}
+  if (phrase) res.json({ phrase });
+  else res.json({ error: "Frase não encontrada" });
+};
