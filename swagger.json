@@ -1,0 +1,88 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Api exemplo para Materia de Serviços Web",
+    "description": "Essa API tem como objetivo a manipulação de 2 tabelas",
+    "termsOfService": "http://localhost:4000/terms",
+    "contact": {
+      "email": "pedro.poglia@hotmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:4000/api",
+      "description": "API de teste"
+    },
+    {
+      "url": "http://exemploDeProd/api",
+      "description": "API de Produção"
+    }
+  ],
+  "paths": {
+    "/frases": {
+      "post": {
+        "summary": "Cadastro de Frases",
+        "description": "Essa rota será responsável por cadastrar uma nova frase",
+        "tags": ["Phrases"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Phrase"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/livros": {
+      "post": {
+        "summary": "Cadastro de Livros",
+        "description": "Essa rota será responsável por cadastrar um novo livro",
+        "tags": ["Books"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Book"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+        "Phrase": {
+            "type": "object",
+            "properties": {
+                "author": {
+                    "type": "string"
+                },
+                "text": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "number"
+                }
+            }
+        },
+        "Book": {
+            "type": "object",
+            "properties": {
+                "author": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+  }
+}
